@@ -125,6 +125,11 @@
 	}
 	</style>
 </HEAD>
+    <?php
+	include('forma_2')
+	
+	?>
+
     <BODY background="bg.jpg">
 	
     <table border="1" align="center" cellpadding="10" >
@@ -139,7 +144,7 @@
 	<a href="#">Photo галерея</a>&nbsp;&nbsp;
 	<a href="#">Телеон</a>&nbsp;&nbsp;
 	<a href="#">Статистика</a>&nbsp;&nbsp;
-	<a href="#">Зареєстровані</a>&nbsp;&nbsp;
+	<a href="forma_2.php">Зареєстровані</a>&nbsp;&nbsp;
 	</b></font>
 	
 	<tr>

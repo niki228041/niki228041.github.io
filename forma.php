@@ -3,7 +3,110 @@
 	<meta charset="utf-8">
 	<title> Сайт </title>
 	
+	<script type="text/javascript">
+	function clockPainting() {
+        var now = new Date();
+        var sec = now.getSeconds();
+        var min = now.getMinutes();
+        var hr = now.getHours();
+
+        var ctx = document.getElementById("canvas").getContext("2d");
+        ctx.save();// помещаем текущий контекст в стэк
+
+        ctx.clearRect(0,0,150,150);
+        ctx.translate(75, 75);
+        ctx.scale(0.4,0.4);
+        ctx.rotate(-Math.PI/2);
+
+        ctx.strokeStyle = "black";
+        ctx.fillStyle = "black";
+        ctx.lineWidth = 8;
+        ctx.lineCap = "round";
+
+        ctx.save();
+        ctx.beginPath();
+
+        for (var i = 0; i < 12; i++) {
+            ctx.rotate(Math.PI/6);
+            ctx.moveTo(100,0);
+            ctx.lineTo(120,0);
+        }
+
+        ctx.stroke();// нарисовали то, что ранее описали
+        ctx.restore();// достаем последний сохраненный контекст из стэка
+
+        ctx.save();
+        // рисуем часовую стрелку, вращая холст
+        ctx.rotate((Math.PI/6)*hr +
+            (Math.PI/360)*min +
+            (Math.PI/21600)*sec);
+        ctx.lineWidth = 14;
+
+        ctx.beginPath();
+        ctx.moveTo(-20,0);
+
+        // линия почти до часовых меток
+        ctx.lineTo(80,0);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+
+        // минутная стрелка
+        ctx.rotate((Math.PI/30*min) +
+            (Math.PI/1800)*sec);
+        ctx.lineWidth = 10;
+
+        ctx.beginPath();
+        ctx.moveTo(-28,0);
+        ctx.lineTo(112,0);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+
+        // секундная стрелка
+        ctx.rotate(sec * Math.PI/30);
+        ctx.strokeStyle = "#D40000";// цвет контура
+        ctx.fillStyle = "#D40000";
+        ctx.lineWidth = 6;
+
+        ctx.beginPath();
+        ctx.moveTo(-30,0);
+        ctx.lineTo(83,0);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.restore();
+    }
+	</script>
 	
+	<script type="text/javascript">
+	function send()
+	{    var valid = true;
+	     var elems = document.forms[0].elements;
+		 for(var i=0;i < document.forms[0].length;i++)
+	 {
+		 if(elems[i].getAttribute('type') == 'text' ||
+		    elems[i].getAttribute('type') == 'password' ||
+			elems[i].getAttribute('type') == 'email' ) 
+		 {
+		     if(elems[i].value == '')
+		     {
+		         elems[i].style.border = '2px solid red';
+		         valid = false;
+		     }
+		 
+		 }
+		 if(!valid)
+		 {
+		     alert('Запомніть всі поля !!!');
+			 return false;
+		 }
+	 }
+	
+	}
+	</script>
 	
 	<script>
 	window.onload = function()
@@ -22,6 +125,7 @@
 	}
 	</style>
 </HEAD>
+
     <BODY background="bg.jpg">
 	
     <table border="1" align="center" cellpadding="10" >
@@ -85,13 +189,13 @@
 </hr>
 		</td>
 		<td width="70%">
-<h1 align="center">Дякуємо за реєстрацію 
+<h1 align="center">Дякуємо за реєстрацію !</h1>
 <?php
-$st = $_POST['name2'].";".$_POST['name1'].$_POST['nicl'].";".$_POST[email].";".$_POST['password']."\n";
+$st = $_POST['name2'].";".$_POST['name1'].";".$_POST[nicl].";".$_POST['email'].";".$_POST['password']."\n";
 
 $fp = fopen("baza.txt","a");
 $test = fwrite($fp,$st);
-echo "<h2 align='center'>Вы ввели :".$_POST['name2'].",".$_POST['name1'].",".$_POST['email'].",".$_POST['password']."</h2>";
+echo "<h2 align='center' > Ви ввели :".$_POST['name2'].",".$_POST['nicl'].$_POST['email'].",".$_POST['password']."</h2>";
 ?>
 </h1>
 		</td>

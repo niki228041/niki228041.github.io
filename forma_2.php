@@ -139,7 +139,7 @@
 	<a href="#">Photo галерея</a>&nbsp;&nbsp;
 	<a href="#">Телеон</a>&nbsp;&nbsp;
 	<a href="#">Статистика</a>&nbsp;&nbsp;
-	<a href="#">Зареєстровані</a>&nbsp;&nbsp;
+	<li class="active"><a href="#">Зареєстровані</a>&nbsp;&nbsp;
 	</b></font>
 	
 	<tr>
@@ -208,7 +208,7 @@ foreach ($data as $line){
 	         echo '</tr>';
 	}
 ?>
-</table'>;
+</table>';
 	</td>
 	</tr>	
 	<tr>
